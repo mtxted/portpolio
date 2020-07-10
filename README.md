@@ -1,2 +1,1 @@
-# website
-Website
+포트폴리오 용도로 만들어 짐.
