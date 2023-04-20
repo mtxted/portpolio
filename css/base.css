@@ -193,17 +193,35 @@ html, body {
 
 body {
 	--color-text: #252528;
-	--color-bg: #afb6bc;
+	--color-bg: #fff;
 	--color-link: #252528;
 	--color-link-hover: #252528;
 	--color-menu-text: #252528;
-	--color-bg-move: #afb6bc;
+	--color-bg-move: #fff;
 	--color-move-to: #0089ff;
 	color: var(--color-text);
 	background-color: var(--color-bg);
 	font-family: fieldwork-hum, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+/* 스크롤바 설정*/
+body::-webkit-scrollbar{
+	width: 20px;
+}
+
+/* 스크롤바 막대 설정*/
+body::-webkit-scrollbar-thumb{
+	background-color: rgba(255,255,255,1);
+	/* 스크롤바 둥글게 설정    */
+	border-radius: 10px;
+	border: 7px solid rgba(0,0,0,0.8);
+}
+
+/* 스크롤바 뒷 배경 설정*/
+body::-webkit-scrollbar-track{
+	background-color: rgba(0,0,0,0);
 }
 
 main {
@@ -424,7 +442,7 @@ a:focus {
 }
 
 .item__content-text {
-	margin: 10vh 0 4rem 0;
+	margin: 5vh 0 4rem 0;
 	position: relative;
 	line-height: 1.5;
 }
@@ -443,8 +461,98 @@ a:focus {
 	font-size: 18px;
 }
 
-.incen_wrap {
-	border-top: 1px solid #000;
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	/* Compensate for excess margin on outer gallery flex items */
+	margin: -1rem -1rem;
+}
+
+.gallery-item {
+	/* Minimum width of 24rem and grow to fit available space */
+	flex: 1 0 24rem;
+	/* Margin value should be half of grid-gap value as margins on flex items don't collapse */
+	margin: 1rem;
+	box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+	position: relative;
+}
+
+.gallery-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 400ms ease-out;
+	position: relative;
+}
+
+.gallery-tooltip {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0);
+	transition: background 0.5s ease;
+	object-fit: cover;
+}
+
+.gallery-tooltip:hover .overlay {
+	display: block;
+	background: rgba(0, 0, 0, .5);
+}
+
+.item__work {
+	height: 100%;
+}
+
+.title {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	font-weight: 700;
+	font-size: 30px;
+	text-align: center;
+	transform: translate(-50%, -100%);
+	color: var(--color-text);
+	z-index: 1;
+	transition: top .5s ease;
+}
+
+.gallery-item:hover .title {
+	top: 90px;
+	color: #fff;
+}
+
+.button {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 140px;
+	text-align: center;
+	opacity: 0;
+	transition: opacity .35s ease;
+}
+
+.button a {
+	width: 200px;
+	padding: 12px 48px;
+	text-align: center;
+	color: white;
+	border: solid 2px white;
+	z-index: 1;
+}
+
+.gallery-item:hover .button {
+	opacity: 1;
 }
 
 .incen_list {
@@ -524,6 +632,15 @@ a:focus {
 	padding-left: 20px;
 }
 
+.item__content__works {
+	width: 100%;
+	padding: 8vh 8vw 0 8vw;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	overflow-y: scroll;
+}
 
 @media screen and (min-width: 53em) {
 	.frame {
@@ -585,8 +702,8 @@ a:focus {
 
 	.item__content__works {
 		width: 100%;
-		padding: 15vh 12vw 0 8vw;
-		height: calc(100% - 12rem);
+		padding: 8vh 8vw 0 8vw;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -600,7 +717,26 @@ a:focus {
 		font-size: 2vw;
 	}
 	.item__content-text {
+		width: 100%;
 		margin-bottom: 0;
+	}
+
+	/* 스크롤바 설정*/
+	body::-webkit-scrollbar{
+		width: 20px;
+	}
+
+	/* 스크롤바 막대 설정*/
+	body::-webkit-scrollbar-thumb{
+		background-color: rgba(255,255,255,1);
+		/* 스크롤바 둥글게 설정    */
+		border-radius: 10px;
+		border: 7px solid rgba(0,0,0,0.8);
+	}
+
+	/* 스크롤바 뒷 배경 설정*/
+	body::-webkit-scrollbar-track{
+		background-color: rgba(0,0,0,0);
 	}
 }
 
