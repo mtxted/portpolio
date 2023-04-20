@@ -464,17 +464,13 @@ a:focus {
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
-	/* Compensate for excess margin on outer gallery flex items */
-	margin: -1rem -1rem;
+	margin: 0;
 }
 
 .gallery-item {
-	/* Minimum width of 24rem and grow to fit available space */
-	flex: 1 0 24rem;
-	/* Margin value should be half of grid-gap value as margins on flex items don't collapse */
-	margin: 1rem;
+	height: 100%;
+	margin: 0 0 20px 0;
 	box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.12);
-	overflow: hidden;
 	position: relative;
 }
 
@@ -494,13 +490,17 @@ a:focus {
 	flex-wrap: wrap;
 }
 
+.item__work {
+	height: 100%;
+}
+
 .overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0);
+	background: rgba(0, 0, 0, 0.35);
 	transition: background 0.5s ease;
 	object-fit: cover;
 }
@@ -510,25 +510,26 @@ a:focus {
 	background: rgba(0, 0, 0, .5);
 }
 
-.item__work {
-	height: 100%;
+.gallery-item:hover .gallery-image {
+	filter: grayscale(0%);
 }
 
 .title {
+	width: 100%;
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	font-weight: 700;
-	font-size: 30px;
+	font-size: 22px;
 	text-align: center;
 	transform: translate(-50%, -100%);
-	color: var(--color-text);
+	color: #fff;
 	z-index: 1;
 	transition: top .5s ease;
 }
 
 .gallery-item:hover .title {
-	top: 90px;
+	top: 60px;
 	color: #fff;
 }
 
@@ -536,19 +537,20 @@ a:focus {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	top: 140px;
+	top: 120px;
 	text-align: center;
 	opacity: 0;
 	transition: opacity .35s ease;
 }
 
 .button a {
-	width: 200px;
-	padding: 12px 48px;
+	width: 150px;
+	padding: 12px 30px;
 	text-align: center;
 	color: white;
 	border: solid 2px white;
 	z-index: 1;
+	display: inline-block;
 }
 
 .gallery-item:hover .button {
@@ -737,6 +739,65 @@ a:focus {
 	/* 스크롤바 뒷 배경 설정*/
 	body::-webkit-scrollbar-track{
 		background-color: rgba(0,0,0,0);
+	}
+
+	.gallery {
+		display: flex;
+		flex-wrap: wrap;
+		margin: -1rem -1rem;
+	}
+
+	.gallery-item {
+		flex: 1 0 24rem;
+		margin: 1rem;
+		box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.12);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.35);
+		transition: background 0.5s ease;
+		object-fit: cover;
+	}
+
+	.gallery-tooltip:hover .overlay {
+		display: block;
+		background: rgba(0, 0, 0, .8);
+	}
+
+	.title {
+		width: 100%;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		font-weight: 700;
+		font-size: 30px;
+		text-align: center;
+		transform: translate(-50%, -100%);
+		color: #fff;
+		z-index: 1;
+		transition: top .5s ease;
+	}
+
+	.gallery-item:hover .title {
+		top: 90px;
+		color: #fff;
+	}
+
+	.button {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		top: 140px;
+		text-align: center;
+		opacity: 0;
+		transition: opacity .35s ease;
 	}
 }
 
